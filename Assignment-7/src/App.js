@@ -24,7 +24,7 @@ function App() {
             })
           );
         })
-
+        //error catching so website does not crash
         .catch(() => {
           setLoading(false);
           console.log("This did not work");
@@ -33,20 +33,17 @@ function App() {
   };
 
   return (
-    //<div className="header">
-    <>
-      <p>Search GIFS</p>
-      value = {search}
-      onChange = {(e) => setSearch(e.target.value)}
-      <button onClick={searchGif}>Search</button>
-      {gifs.map((gif) => {
-        return (
-          <div className="box">
-            <img src={gif} />
-          </div>
-        );
-      })}
-    </>
+    <div className="header">
+      <>
+        <p>Search GIFS</p>
+        <input value={search} onChange={(e) => setSearch(e.target.value)} />
+        <button onClick={searchGif}>Search</button>
+        {gifs.map((gif) => {
+          //shows the gifs
+          return <img src={gif} />;
+        })}
+      </>
+    </div>
   );
 }
 
