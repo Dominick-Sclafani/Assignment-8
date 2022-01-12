@@ -29,27 +29,31 @@ function App() {
       })
     }
   }
+  
+  return (
+    
+    <div className="header">
+    <>
 
- useEffect(() =>{
-  console.log(text);
-}, [text])
+    <p>Search GIFS</p>
 
- return (
-    <div className="App">
-      <>
+    value = {search}
 
-      <p>Search GIFS</p>
+    onChange = {(e)=>setSearch(e.target.value)}
 
-      value = {search}
+    <button onClick = {searchGif}>
+      Search
+    </button>
 
-      onChange = {(e)=>setSearch(e.target.value)}
-
-      <button onClick = {searchGif}>
-        Search
-      </button>
-      </>
-    //</div>
-  );
+      gifs.map((gif)=>{
+      return (
+        <div className="box">
+          <img src={gif}/>
+        </div>
+     </div> )
+    });
+    </>
+  );_
 
 }
 
