@@ -1,19 +1,58 @@
 import './App.css';
-import {useState, useEffect} from "react";
+import {useState, useEffect} from "react"
+import SearchField from './components/SearchField';
 
 function App() {
-const baseURL = 'http://api.giphy.com/v1/gifs/search?q=SEARCH+TERM+GOES+HERE&api_key=${process.env.REACT_APP_API_KEY'};
-const [gif, setGifs] = useState([]);
-const loading, setLoading = useState(true);
-console.log (process.env.REACT_APP_KEY)
 
+  const baseURL = 'http://api.giphy.com/v1/gifs/search?q=SEARCH+TERM+GOES+HERE&api_key=${process.env.REACT_APP_API_KEY';
+  const [search, setSearch] = useState("");//set state for search text
+  const [gifs, setGifs] = useState ([]); //set state for gifs
+  const [loading, setLoading] = useState(false);//set state for loading
 
-  return (
+  let searchGif = () => {
+    if (search.length > 0){
+      setLoading(true);
+      fetch(baseURL+search)
+      .then((res)=>{
+        setLoading(true);
+        return res.json();
+      })
+      .then((result)=>{
+         setGifs(result.data.map((gif)=>{
+           return gif.images.fixed_height.url
+         }))
+      })
+
+      .catch(()=>{
+        setLoading(false);
+        console.log("This did not work");
+      })
+    }
+  }
+
+ useEffect(() =>{
+  console.log(text);
+}, [text])
+
+ return (
     <div className="App">
-      
-      
-    </div>
+      <>
+
+      <p>Search GIFS</p>
+
+      value = {search}
+
+      onChange = {(e)=>setSearch(e.target.value)}
+
+      <button onClick = {searchGif}>
+        Search
+      </button>
+      </>
+    //</div>
   );
+
 }
+
+
 
 export default App;
