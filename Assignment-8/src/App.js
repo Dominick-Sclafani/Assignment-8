@@ -38,7 +38,10 @@ function App() {
             />
           }
         ></Route>
-        <Route path="/Login" element={<Login />}></Route>
+        <Route
+          path="/Login"
+          element={<Login user={currentUser} mockLogin={mockLogin} />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
